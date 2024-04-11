@@ -5,4 +5,5 @@ jobs:
       - image: circleci/python:3.9-buster-node-browsers-legacy
     steps:
         - checkout
+        - run: echo "Build step is running"
         - run: python --version
