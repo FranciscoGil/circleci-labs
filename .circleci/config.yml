@@ -7,3 +7,24 @@ jobs:
         - checkout
         - run: echo "Build step is running"
         - run: python --version
+
+  deploy:
+    docker:
+      - image: circleci/python:3.9-buster-node-browsers-legacy
+    steps:
+        - checkout
+        - run: echo "deploy step is running"
+        - run: pip list
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - main
